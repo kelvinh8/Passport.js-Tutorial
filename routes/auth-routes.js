@@ -8,7 +8,7 @@ router.get("/logout",(req,res)=>{
   res.send("log out")
 })
 router.get("/google",passport.authenticate("google",{scope:["profile"]}));
-router.get("/google/redirect",(req,res)=>{
+router.get("/google/redirect",passport.authenticate("google"),(req,res)=>{
   res.send("callback")
 })
 module.exports = router;
