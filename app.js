@@ -3,6 +3,7 @@ const express = require("express");
 const ejs = require("ejs");
 const authRoutes = require("./routes/auth-routes.js");
 const app = express();
+const passportSetup = require("./config/passport.js");
 
 app.set("view engine","ejs");
 app.use("/auth",authRoutes);
