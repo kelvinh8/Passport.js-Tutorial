@@ -8,12 +8,17 @@ passport.use(new GoogleStrategy({
   clientID:process.env.CLIENT_ID,
   clientSecret:process.env.CLIENT_SECRET
 },(accessToken,refreshToken,profile,done)=>{
-  console.log(profile);
-  new User({
-    name:profile.displayName,
-    googleId:profile.id
-  }).save().then((newUser)=>{
-    console.log(`new user created:${newUser}`);
+  User.findOne({googleId:profile.id},(err,currentUser)=>{
+    if(currentUser){
+      console.log(`found user: ${currentUser}`)
+    }else{
+      new User({
+        name:profile.displayName,
+        googleId:profile.id
+      }).save().then((newUser)=>{
+        console.log(`new user created:${newUser}`);
+      })
+    }
   })
 })
 )
