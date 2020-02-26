@@ -20,7 +20,7 @@ app.use("/auth",authRoutes);
 app.use("/profile",profileRoutes);
 mongoose.connect("mongodb://localhost:27017/userDB2",{useUnifiedTopology:true,useNewUrlParser:true});
 app.get("/",(req,res)=>{
-  res.render("home")
+  res.render("home",{user:req.user})
 })
 
 app.listen(3000,()=>{
