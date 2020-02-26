@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const ejs = require("ejs");
 const authRoutes = require("./routes/auth-routes.js");
+const profileRoutes = require("./routes/profile-routes.js");
 const app = express();
 const passport = require("passport");
 const passportSetup = require("./config/passport.js");
@@ -16,6 +17,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.set("view engine","ejs");
 app.use("/auth",authRoutes);
+app.use("/profile",profileRoutes);
 mongoose.connect("mongodb://localhost:27017/userDB2",{useUnifiedTopology:true,useNewUrlParser:true});
 app.get("/",(req,res)=>{
   res.render("home")
